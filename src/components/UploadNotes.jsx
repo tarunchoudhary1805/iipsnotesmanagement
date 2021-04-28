@@ -1,4 +1,14 @@
+import axios from "axios";
 import React, { useState } from "react";
+import ReactS3 from "react-s3";
+
+const config = {
+  bucketName: "myBucket",
+  // dirName: 'photos', /* optional */
+  region: "eu-west-1",
+  accessKeyId: "ANEIFNENI4324N2NIEXAMPLE",
+  secretAccessKey: "cms21uMxçduyUxYjeg20+DEkgDxe6veFosBT7eUgEXAMPLE",
+};
 
 const UploadNotes = () => {
   const [courses, setCourses] = useState([
@@ -17,7 +27,7 @@ const UploadNotes = () => {
     semester: "",
     subject: "",
     subjectCode: "",
-    file: "",
+    file: null,
   });
 
   const handleChange = (e) => {
@@ -29,8 +39,15 @@ const UploadNotes = () => {
   const submit = () => {
     console.log(data);
   };
+  const uploadImage = (e) => {
+    setData({ ...data, [e.target.name]: e.target.files[0] });
+    const fd = new FormData();
+    fd.append("image",e.target.files[0]);
+    axios.post("gs://covid-19-112.appspot.com")
+  };
+  console.log(data);
   return (
-    <div className="container border">
+    <div className="containe border">
       <div className="d-flex justify-content-center pt-5">
         <h3 className="head">Upload Notes</h3>
       </div>
@@ -110,8 +127,8 @@ const UploadNotes = () => {
               id="input-file"
               required
               name="file"
-              value={data.file}
-              onChange={handleChange}
+              // value={data.file?.name}
+              onChange={uploadImage}
               placeholder="E.g. IC-101A , IC-101B"
             />
             <br />

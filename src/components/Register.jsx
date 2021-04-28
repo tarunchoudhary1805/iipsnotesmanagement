@@ -44,7 +44,7 @@ const Register = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container border bg-secodary ">
+      <div className="containr border bg-secodary ">
         <div className="d-flex justify-content-center pt-5">
           <h3 className="head">Register</h3>
         </div>

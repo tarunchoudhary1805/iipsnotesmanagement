@@ -27,7 +27,7 @@ const Login = (props) => {
   return (
     <>
       <ToastContainer />
-      <div className="container border ">
+      <div className="containe border ">
         <div className="d-flex justify-content-center pt-5">
           <h3 className="head">Login</h3>
         </div>
